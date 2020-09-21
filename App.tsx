@@ -1,21 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { FC } from "react";
+import { Provider as PaperProvider } from "react-native-paper";
+import { SWRConfig } from "swr";
 
-export default function App() {
+import Home from "./src/views/home";
+import swrConfig from "./src/config/swr";
+import theme from "./src/config/theme";
+
+const App: FC = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SWRConfig value={swrConfig}>
+      <PaperProvider theme={theme}>
+        <Home />
+      </PaperProvider>
+    </SWRConfig>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
